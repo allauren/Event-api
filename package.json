@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/allauren/Event-api#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
     "mongoose": "^5.3.0"
   }

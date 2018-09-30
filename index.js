@@ -3,9 +3,7 @@ const mongo = require('mongoose')
 const keys = require('./config/keys')
 const bodyParser = require('body-parser')
 const app = express()
-/* Connecting to database *\
-XXX CODE
-*/
+const cookieParser = require('cookie-parser')
 
 try {
 	mongo.connect(keys.mongoURL, {useNewUrlParser: true})
@@ -16,8 +14,7 @@ catch (err) {
 };
 
 app.use(bodyParser.json())
-
-// get the API endpoints right here
+app.use(cookieParser())
 require('./controllers/ApiEndpoints')(app)
 
 const PORT = process.env.PORT || 3000

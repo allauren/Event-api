@@ -1,28 +1,42 @@
 const database = require('../database/database')
+const parser = require('../middlewares/checkdatas')
 
 module.exports = (app) =>{
 	app.post ('/api/events', (req, res) =>{
-		//parser
-		//if ok push 
-		res.json({'message':'coucou'})
+			let falty = (err) =>{
+				return res.status(400).send('error' + err);
+			};
+			parser.post(req, (err, data) =>{
+				if (err)
+					returnfalty(err)
+				database.post(data, (err, data)=>{
+				if (err)
+					return falty(err)
+				 res.status(200).send('ok')
+				})
+			})
 		})
 
 	app.get ('/api/events', (req, res) =>{
 		database.get(0, (err, data) =>
 			{
 				if (err)
-					return res.json({'message':'coucou'})
+					return res.status(400).send('error' + err);
 				res.json(data)
 			})
 		})
 
 	// still need to make it variable! XXX
 	app.get ('/api/events/:num', (req, res) => {
-		database.get(1, (err, data) =>
-			{
-				if (err)
-					return res.json({'message':'coucou'})
-				res.json(data)
+		parser.num (req, (err, num) =>{
+			if (err)
+				return res.status(400).send('error' + err);
+			database.get(num, (err, data) =>
+				{
+					if (err)
+						return res.status(400).send('error' + err);
+					res.json(data)
+				})
 			})
 		})
 }

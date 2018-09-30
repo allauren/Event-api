@@ -8,12 +8,12 @@ let template = new Schema({
 	cookieId: String,
 	referer: String,
 	ip: String,
-	createdAt: String,
+	createdAt: { type: Date, default: Date.now },
 }, {collection: 'events'})
 let event = mongoose.model('Events', template);
 
 module.exports = {
-	post : (data) =>{
+	post : (data, callback) =>{
 			let newEvent = new event({
 			name: data.name,
 			cookieId: data.cookieId,
@@ -21,13 +21,15 @@ module.exports = {
 			ip: data.ip,
 			createdAt: data.createdAt,
 			})
+			console.log(newEvent)
 			return newEvent.save((err) =>{
 				if (err)
-					throw (err)
+					 return callback('mongo' + err)
+				callback(null, 'ok')
 			})
 		},
 	get : (x, callback) =>{
-		event.find().lean().limit(0).exec((err, data) => {
+		event.find().lean().limit(x).exec((err, data) => {
 				if (err)
 					callback (err)
 				 callback (null, data)
