@@ -26,7 +26,6 @@ module.exports = (app) =>{
 			})
 		})
 
-	// still need to make it variable! XXX
 	app.get ('/api/events/:num', (req, res) => {
 		parser.num (req, (err, num) =>{
 			if (err)
@@ -38,5 +37,9 @@ module.exports = (app) =>{
 					res.json(data)
 				})
 			})
+		})
+
+	app.get ('/api/dashboard', (req, res) => {
+			database.dashboard()
 		})
 }
