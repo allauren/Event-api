@@ -1,0 +1,26 @@
+{
+  "name": "event-api",
+  "version": "1.0.0",
+  "description": "an event API for Soundcast",
+  "main": "index.js",
+  "scripts": {
+    "test": "None"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allauren/Event-api.git"
+  },
+  "keywords": [
+    "API"
+  ],
+  "author": "allauren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allauren/Event-api/issues"
+  },
+  "homepage": "https://github.com/allauren/Event-api#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.3.0"
+  }
+}
