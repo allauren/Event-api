@@ -4,7 +4,8 @@
   "description": "an event API for Soundcast",
   "main": "index.js",
   "scripts": {
-    "test": "None"
+    "start": "node keystone.js",
+    "dev": "nodemon keystone.js"
   },
   "repository": {
     "type": "git",
